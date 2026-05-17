@@ -1,7 +1,7 @@
 import os
 from box.exceptions import BoxValueError
 import yaml
-from cnnClassifierKidneyDisease import logger
+from cnnClassifierKidneyDisease.logging import logger
 import json
 import joblib
 from ensure import ensure_annotations
@@ -34,7 +34,7 @@ def read_yaml(path_to_yaml: Path) -> ConfigBox:
         raise e
     
 @ensure_annotations
-def create_directories(path_to_directories: list, verbose: bool = True) -> None:
+def create_directories(path_to_directories: list, verbose: bool = True):
     """
     Creates directories if they do not exist.
 

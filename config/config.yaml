@@ -1,0 +1,6 @@
+artifacts_root: artifacts
+
+data_ingestion:
+  root_dir: artifacts/data_ingestion
+  kaggle_dataset: "nazmul0087/ct-kidney-dataset-normal-cyst-tumor-and-stone"
+  unzip_dir: artifacts/data_ingestion/ct-kidney-dataset/datasets/nazmul0087/ct-kidney-dataset-normal-cyst-tumor-and-stone/versions/1/CT-KIDNEY-DATASET-Normal-Cyst-Tumor-Stone
