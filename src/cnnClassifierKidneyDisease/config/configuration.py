@@ -1,7 +1,7 @@
 from cnnClassifierKidneyDisease.constants import *
 from cnnClassifierKidneyDisease.utils.common import read_yaml, create_directories
 from cnnClassifierKidneyDisease.entity.config_entity import (DataIngestionConfig,
-                                                        PrepareBaseModelConfig)     
+                                                        PrepareBaseModelConfig, TrainingConfig)     
 
 class ConfigurationManager:
     def __init__(
@@ -48,3 +48,23 @@ class ConfigurationManager:
         )
 
         return prepare_base_model_config
+    
+    def get_training_config(self) -> TrainingConfig:
+        training_config = self.config.model_training
+        prepare_base_model_config = self.config.prepare_base_model
+        training_data = Path(self.config.data_ingestion.unzip_dir)
+        
+        create_directories([training_config.root_dir])
+
+        training_config = TrainingConfig(
+            root_dir=training_config.root_dir,
+            trained_model_path=training_config.trained_model_path,
+            updated_base_model_path=prepare_base_model_config.updated_base_model_path,
+            training_data_dir=training_data,
+            params_image_size=self.params.IMAGE_SIZE,
+            params_epochs=self.params.EPOCHS,
+            params_batch_size=self.params.BATCH_SIZE,
+            params_augmentation=self.params.AUGMENTATION
+        )
+
+        return training_config
